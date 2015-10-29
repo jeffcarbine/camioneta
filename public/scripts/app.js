@@ -1,7 +1,7 @@
 angular
   .module('FoodTruckApp', [
     'ngRoute',
-    'LoginController',
+    'LoginController'
   ])
   .config([
     '$routeProvider',

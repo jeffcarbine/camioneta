@@ -1,6 +1,6 @@
 angular
-  .module('LoginController', [
-    'rewards.auth'
+  .module('LoginModule', [
+    'auth'
   ])
   .controller('LoginController', [
     'auth',
