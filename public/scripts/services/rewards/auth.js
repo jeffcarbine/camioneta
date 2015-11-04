@@ -1,5 +1,5 @@
 angular
-  .module('rewards.auth'), [
+  .module('rewards.auth', [
     'rewards'
   ])
   .factory('auth', [
@@ -16,5 +16,5 @@ angular
         }
       };
       return auth;
-    },
+    }
   ]);

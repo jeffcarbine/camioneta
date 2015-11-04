@@ -1,11 +1,12 @@
 angular
   .module('FoodTruckApp', [
     'ngRoute',
-    'LoginController'
+    'LoginController',
+    'rewards'
   ])
   .config([
     '$routeProvider',
-    function ($routeProvider) { 'use strict';
+    function ($routeProvider) {
       $routeProvider
         .when('/', {
           templateUrl: '/partials/users',
@@ -13,5 +14,5 @@ angular
           controllerAs: 'login'
         })
         .otherwise('/');
-    },
+    }
   ]);

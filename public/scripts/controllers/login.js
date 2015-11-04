@@ -1,15 +1,15 @@
 angular
-  .module('LoginModule', [
-    'auth'
+  .module('LoginController', [
+    'rewards.auth'
   ])
   .controller('LoginController', [
-    'auth',
-    'users',
+    'rewards.auth',
+    'UserModule',
     function (auth, users) {
 
       this.signin = function(email, password) {
         auth.login(email, password)
-          .then(fuinction(res) {
+          .then(function(res) {
             console.log(res.data);
           })
           .catch(function(res) {

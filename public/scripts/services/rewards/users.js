@@ -1,5 +1,5 @@
 angular
-  .module('UserModule'), [
+  .module('UserModule', [
     'rewards'
   ])
   .factory('users', [
@@ -15,5 +15,5 @@ angular
         }
       };
       return users;
-    },
+    }
   ]);

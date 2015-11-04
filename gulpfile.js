@@ -39,7 +39,7 @@ gulp.task('watch', [
 gulp.task('scripts', function() {
   return gulp.src(
     lib.ext('js').files
-      .concat('public/scripts/*.js')
+      .concat('public/scripts/**/*.js')
   )
     .pipe(sourcemaps.init())
       .pipe(concat('app.min.js'))
@@ -49,7 +49,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('scripts.watch', ['scripts'], function() {
-  gulp.watch('public/scripts/*.js', ['scripts']);
+  gulp.watch('public/scripts/**/*.js', ['scripts']);
 });
 
 gulp.task('styles', function() {

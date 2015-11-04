@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var session = require('./routes/session');
 var admin = require('./routes/admin')
 
 mongoose.connect('mongodb://localhost/foodtruck');
@@ -28,8 +26,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/session', session);
 app.use('/admin', admin)
 app.use('/partials', function(req, res, next) {
   res.render('partials/' + req.path);
