@@ -2,6 +2,7 @@ angular
 .module('FoodTruckApp', [
   'ngRoute',
   'LoginController',
+  'DashboardController',
 ])
 .config([
   '$routeProvider',
@@ -11,6 +12,11 @@ angular
         templateUrl: '/partials/rewards',
         controller: 'LoginController',
         controllerAs: 'login',
+      })
+      .when('/dashboard', {
+        templateUrl: './partials/dashboard',
+        controller: 'DashboardController',
+        controllerAs: 'dashboard',
       })
       .otherwise('/');
   },

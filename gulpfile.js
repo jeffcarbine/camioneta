@@ -78,7 +78,7 @@ gulp.task('static.watch', ['static'], function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src(lib.ext(['eot', 'svg', 'ttf', 'woff']).files)
+  return gulp.src(lib.ext(['eot', 'svg', 'ttf', 'woff', 'woff2',]).files)
     .pipe(gulp.dest('public/build/fonts'));
 });
 

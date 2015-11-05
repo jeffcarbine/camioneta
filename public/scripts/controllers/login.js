@@ -7,18 +7,25 @@ angular
 .controller('LoginController', [
   'auth',
   'users',
-  function (auth, users) {
+  '$location',
+  function (auth, users, $location) {
     var login = this;
+
+    auth.isLoggedIn().then(function(isLoggedIn) {
+      if (isLoggedIn) {
+        $location.url('/dashboard');
+      }
+    });
 
     login.inputType = 'signin';
 
     login.submit = function(email, password) {
-      login.errorMessage = null;
+      console.log(login.inputType);
 
       login[login.inputType](email, password)
         .then(function(res) {
-          // REWARDS redirect to the rewards page
-          console.log('success');
+          console.log('Hello');
+          $location.url('/dashboard');
         })
         .catch(function(res) {
           console.log(res.status, res.data);

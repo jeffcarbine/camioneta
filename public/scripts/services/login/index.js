@@ -3,4 +3,4 @@ angular
     'login.auth',
     'login.users',
   ])
-  .value('rewardsHost', 'http://localhost:5000');
+  .value('rewardsHost', 'http://localhost:3000');
