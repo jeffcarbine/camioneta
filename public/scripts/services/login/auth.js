@@ -1,6 +1,6 @@
 angular
-  .module('rewards.auth', [
-    'rewards'
+  .module('login.auth', [
+    'login'
   ])
   .factory('auth', [
     '$http',
@@ -11,10 +11,11 @@ angular
           return $http
             .post(host + '/session', {
               email: email,
-              password: password
+              password: password,
             });
         }
       };
+
       return auth;
-    }
+    },
   ]);

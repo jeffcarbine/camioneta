@@ -1,35 +1,45 @@
 angular
-  .module('LoginController', [
-    'rewards.auth'
-  ])
-  .controller('LoginController', [
-    'rewards.auth',
-    'UserModule',
-    function (auth, users) {
+.module('LoginController', [
+  'login.auth',
+  'login.users',
+  'toggleDirective',
+])
+.controller('LoginController', [
+  'auth',
+  'users',
+  function (auth, users) {
+    var login = this;
 
-      this.signin = function(email, password) {
-        auth.login(email, password)
-          .then(function(res) {
-            console.log(res.data);
-          })
-          .catch(function(res) {
-            console.log('error: ', res.data);
-          });
-      };
+    login.inputType = 'signin';
 
-      this.signup = function(email, password) {
-        users
-          .create({
-            email: email,
-            password: password
-          })
-          .then(function(res) {
-            console.log(res.data);
-          })
-          .catch(function(res) {
-            console.log(res.data);
-          })
-      }
+    login.submit = function(email, password) {
+      login.errorMessage = null;
 
-    },
-  ]);
+      login[login.inputType](email, password)
+        .then(function(res) {
+          // REWARDS redirect to the rewards page
+          console.log('success');
+        })
+        .catch(function(res) {
+          console.log(res.status, res.data);
+          login.errorMessage = res.data.message;
+        });
+    };
+
+    login.signin = function(email, password) {
+      return auth.login(email, password);
+    };
+
+    login.signup = function(email, password) {
+      return users
+        .create({
+          email: email,
+          password: password
+        })
+        .then(function(res) {
+          return auth.login(email, password);
+        });
+    };
+
+  },
+]);

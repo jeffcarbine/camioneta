@@ -5,7 +5,7 @@ html(ng-app="FoodTruckApp")
     link(rel='stylesheet', href='/build/css/app.min.css')
   body
     header
-      nav
-        p= title
+      nav(class="navbar navbar-default")
+        strong= title
     block content
     script(src="/build/js/app.min.js")
