@@ -3,6 +3,7 @@ angular
   'ngRoute',
   'LoginController',
   'DashboardController',
+  'AdminController',
 ])
 .config([
   '$routeProvider',
@@ -17,6 +18,11 @@ angular
         templateUrl: './partials/dashboard',
         controller: 'DashboardController',
         controllerAs: 'dashboard',
+      })
+      .when('/admin', {
+        templateUrl: './partials/admin',
+        controller: 'AdminController',
+        controllerAs: 'admin',
       })
       .otherwise('/');
   },

@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-var admin = require('./routes/admin');
 var users = require('./routes/users');
 var session = require('./routes/session');
 
@@ -34,7 +33,6 @@ app.use(expressSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/admin', admin);
 app.use('/users', users);
 app.use('/session', session);
 app.use('/partials', function(req, res, next) {

@@ -4,7 +4,7 @@ angular
 ])
 .factory('users', [
   '$http',
-  'rewardsHost',
+  'loginHost',
   function($http, host) {
     var users = {
       create: function(user) {

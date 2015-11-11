@@ -4,7 +4,7 @@ angular
   ])
   .factory('auth', [
     '$http',
-    'rewardsHost',
+    'loginHost',
     '$q',
     function($http, host, $q) {
       var currentUser;
