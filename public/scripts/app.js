@@ -4,20 +4,26 @@ angular
   'LoginController',
   'DashboardController',
   'AdminController',
+  'RewardsController',
 ])
 .config([
   '$routeProvider',
   function ($routeProvider) { 'use strict';
     $routeProvider
       .when('/', {
-        templateUrl: '/partials/rewards',
-        controller: 'LoginController',
-        controllerAs: 'login',
-      })
-      .when('/dashboard', {
         templateUrl: './partials/dashboard',
         controller: 'DashboardController',
         controllerAs: 'dashboard',
+      })
+      .when('/login', {
+        templateUrl: '/partials/login',
+        controller: 'LoginController',
+        controllerAs: 'login',
+      })
+      .when('/rewards', {
+        templateUrl: '/partials/rewards',
+        controller: 'RewardsController',
+        controllerAs: 'rewards',
       })
       .when('/admin', {
         templateUrl: './partials/admin',

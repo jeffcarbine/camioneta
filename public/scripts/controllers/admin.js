@@ -1,11 +1,11 @@
 angular
   .module('AdminController', [
-    'geo',
+    'location',
   ])
   .controller('AdminController', [
     'set',
     function(set) {
       var admin = this;
-      admin.submit = set.getLocation();
+      admin.submit = set.location;
     }
   ]);

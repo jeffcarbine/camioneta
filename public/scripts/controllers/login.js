@@ -23,7 +23,7 @@ angular
 
         login[login.inputType](email, password)
           .then(function(res) {
-            $location.url('/dashboard');
+            $location.url('/rewards');
           })
           .catch(function(res) {
             console.log(res.status, res.data);

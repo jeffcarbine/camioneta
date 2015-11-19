@@ -1,0 +1,32 @@
+div(class="alert alert-danger" ng-show="login.successMessage")
+  p {{ login.successMessage }}
+
+div(class="row")
+  div(class="col-sm-4 col-sm-offset-4")
+    h1 Login
+    form(ng-submit="login.submit(login.inputs.email, login.inputs.password)")
+      div(class="form-group")
+        label(for="email") Email
+        input(
+          class="form-control"
+          name="email"
+          type="text"
+          ng-model="login.inputs.email"
+        )
+      div(class="form-group")
+        label(for="password") Password
+        div(class="input-group")
+          input(
+            class="form-control"
+            name="password"
+            type="{{ login.showPassword ? 'text' : 'password' }}"
+            ng-model="login.inputs.password"
+          )
+          span(class="input-group-btn")
+            toggle(value="login.showPassword" active="eye-open" inactive="eye-close")
+
+      div(class="alert alert-danger" ng-show="login.errorMessage")
+        p {{ login.errorMessage }}
+      div(class="form-group")
+        button(type="submit" ng-click="login.inputType = 'signin'" class="btn btn-primary") Login
+        button(type="submit" ng-click="login.inputType = 'signup'" class="btn btn-info") Signup

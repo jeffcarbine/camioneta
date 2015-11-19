@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
       if (!user)
         { return res.status(404).json({
           error: 'User not found',
-          message: 'Username or password is incorrect'
+          message: 'No user found.',
         });
 			}
 			delete user.password;

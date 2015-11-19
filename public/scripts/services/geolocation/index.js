@@ -1,6 +1,6 @@
 angular
-  .module('geo', [
-    'geo.set',
-    'geo.retrieve',
+  .module('location', [
+    'location.set',
+    'location.get',
   ])
   .value('geoHost', 'http://localhost:3000');

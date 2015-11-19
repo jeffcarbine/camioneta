@@ -10,8 +10,10 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var session = require('./routes/session');
+var setLocation = require('./routes/setLocation');
+var getLocation = require('./routes/getLocation');
 
-mongoose.connect('mongodb://localhost/foodtruck');
+mongoose.connect('mongodb://localhost/camioneta');
 
 var app = express();
 
@@ -35,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/session', session);
+app.use('/setLocation', setLocation);
+app.use('/getLocation', getLocation);
 app.use('/partials', function(req, res, next) {
   res.render('partials/' + req.path);
 });

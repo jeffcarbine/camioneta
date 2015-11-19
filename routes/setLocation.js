@@ -1,19 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/geoSchema');
+var Coord = require('../models/locationSchema');
 
 /* POST */
 router.post('/', function(req, res, next) {
-	var user = new Coord({
+	var coord = new Coord({
 		longitude:req.body.longitude,
-		latitude:req.body.latitude
+		latitude:req.body.latitude,
+		date:req.body.date,
 	});
-	user.save(function(err, doc){
+	coord.save(function(err, doc){
     if(err) {
     	return next(err);
     } else {
-      res.json(user);
+      res.json(coord);
     }
   });
 });
