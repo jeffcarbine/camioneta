@@ -1,3 +1,6 @@
 h1 This is the dashboard!
 
-p {{dashboard.coord}}
+p The truck is currently open at this location!
+div#map_canvas
+  ng-map(center="{{dashboard.coord}}")
+    marker(position="{{dashboard.coord}}")

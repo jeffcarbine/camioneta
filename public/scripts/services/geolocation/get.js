@@ -3,7 +3,7 @@ angular
     'location',
   ])
   .factory('get', [
-    'geoHost',
+    'host',
     '$http',
     function(host, $http) {
       var get = {

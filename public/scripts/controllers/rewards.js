@@ -1,14 +1,14 @@
 angular
   .module('RewardsController', [
-    //'rewards.checkIn',
+    'rewards.checkIn',
     //'rewards.redeem',
     'login.auth',
   ])
   .controller('RewardsController', [
-    //'checkIn',
-    //'redeem',
     'auth',
     '$location',
+    'checkIn',
+    //'redeem',
     function(auth, $location) {
       var rewards = this;
 

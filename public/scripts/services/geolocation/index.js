@@ -3,4 +3,4 @@ angular
     'location.set',
     'location.get',
   ])
-  .value('geoHost', 'http://localhost:3000');
+  .value('host', 'http://localhost:3000');

@@ -9,6 +9,7 @@ router.post('/', function(req, res, next) {
 		longitude:req.body.longitude,
 		latitude:req.body.latitude,
 		date:req.body.date,
+		status:req.body.status,
 	});
 	coord.save(function(err, doc){
     if(err) {

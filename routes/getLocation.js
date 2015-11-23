@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
 		.findOne().sort('-date')
 		.then(function(coord) {
 			res.json({
-				longitude : coord.longitude,
 				latitude : coord.latitude,
-				date: coord.date
+				longitude : coord.longitude,
+				status: coord.status,
 			});
 		})
 		.catch(next);

@@ -1,5 +1,8 @@
 h1= title
 p Here is where the admin can push their current GPS location to the database.
 
-form(ng-submit="admin.submit()")
-    button(type="submit") Open for business!
+form(ng-submit="admin.set()")
+  button(type="submit") Open/Close
+
+form(ng-submit="admin.move()")
+  button(type="submit") Let's get moving!
