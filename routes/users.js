@@ -7,7 +7,8 @@ var User = require('../models/userSchema');
 router.post('/', function(req, res, next) {
 	var user = new User({
 		email:req.body.email,
-		password:req.body.password
+		password:req.body.password,
+		lastCheckIn: 0,
 	});
 	user.save(function(err, doc){
     if(err) {

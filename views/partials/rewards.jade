@@ -1,4 +1,7 @@
 h1 This is the rewards page.
-p You should be logged in to see this.
+p {{rewards.message}}
+
+form(ng-submit="rewards.verify()")
+  button(type="submit") Check In
 
 a(href="/logout") Log Out

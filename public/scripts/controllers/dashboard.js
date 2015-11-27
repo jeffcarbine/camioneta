@@ -5,8 +5,9 @@ angular
   .controller('DashboardController', [
     'get',
     function(get) {
-      var status;
       var dashboard = this;
+      dashboard.isAdmin = false; // turn to false for user app
+      var status;
       get.location()
         .then(function(res) {
           dashboard.coord = [
@@ -14,7 +15,28 @@ angular
             res.data.longitude
           ];
           status = res.data.status;
-          console.log(status);
+          var open;
+          var closed;
+          var moving;
+          if(status === 0) {
+            open = true;
+            closed = false;
+            moving = false;
+          } else if (status === 1) {
+            open = false;
+            closed = false;
+            moving = true;
+          } else if (status === 2) {
+            open = false;
+            closed = true;
+            moving = false;
+          }
+          dashboard.open = open;
+          dashboard.closed = closed;
+          dashboard.moving = moving;
         });
+      setTimeout(function(){
+       window.location.reload(1);
+      }, 60000);
     },
   ]);

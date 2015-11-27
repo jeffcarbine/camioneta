@@ -35,7 +35,6 @@ angular
           if(currentUser !== undefined) {
             return $q.resolve(!!currentUser);
           }
-          console.log(currentUser);
           return $http
             .get(host + '/session')
             .then(function(res) {

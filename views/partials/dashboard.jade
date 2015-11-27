@@ -1,6 +1,21 @@
-h1 This is the dashboard!
+p The truck is
 
-p The truck is currently open at this location!
-div#map_canvas
+div(ng-if="dashboard.open")
+  h2 Open
+div(ng-if="dashboard.moving")
+  h2 Moving
+div(ng-if="dashboard.closed")
+  h2 Closed
+
+div#map_canvas(ng-if="dashboard.open") 
   ng-map(center="{{dashboard.coord}}")
     marker(position="{{dashboard.coord}}")
+div(ng-if="dashboard.moving") 
+  div#truck.bounce
+    div.wheel.wheel1.rotate
+    div.wheel.wheel2.rotate
+div(ng-if="dashboard.closed") 
+  p Image for closed truck.
+  
+div(ng-if="dashboard.isAdmin" class="navbar navbar-default")
+  a(href="/#/admin") Admin

@@ -1,0 +1,79 @@
+/* TRUCK ANIMATION */
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    top:-1px;
+  }
+  25% {
+    top:0px;
+  }
+  50% {
+    top:1px;
+  }
+  75% {
+    top:0px;
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  -webkit-animation-duration: .3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  position: absolute;
+}
+
+#truck {
+  width: 400px;
+  height: 172px;
+  display: block;
+  background: red;
+  position: relative;
+  background: url('../truck.png')
+}
+
+.wheel {
+  width: 61px;
+  height: 61px;
+  display: block;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  background: url('../wheel.png');
+}
+
+.wheel1 {
+  left: 50px;
+  bottom: -30px;
+}
+
+.wheel2 {
+  right: 41px;
+  bottom: -30px;
+}
+
+/* NAVIGATION */
+
+.navbar a {
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  padding: 14px;
+  text-shadow: 0px 0px 15px rgba(0,0,0,.6);
+}

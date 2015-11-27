@@ -4,9 +4,12 @@ html(ng-app="FoodTruckApp")
     title= title
     link(rel='stylesheet', href='/build/css/app.min.css')
     script(src="http://maps.google.com/maps/api/js")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1")
   body
     header
       nav(class="navbar navbar-default")
-        strong= title
+        a(href="/#/") Truck
+        a(href="/#/menu") Our Menu
+        a(href="/#/rewards") Rewards
     block content
     script(src="/build/js/app.min.js")
