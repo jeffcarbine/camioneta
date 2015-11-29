@@ -10,6 +10,8 @@ angular
     function(auth, $location, get) {
       var rewards = this;
 
+      var user; // setting up blank user variable for check in later
+
       var userLongitude;
       var userLatitude;
       var truckLongitude;
@@ -40,18 +42,26 @@ angular
 
         function checkUserLocation() {
           if ((userLatitude > (truckLatitude - 0.0005) && userLatitude < (truckLatitude + 0.0005)) && (userLongitude > (truckLongitude - 0.0005) && userLongitude < (truckLongitude + 0.0005))) {
-            checkInSuccessful();
+            checkLastCheckIn();
           } else {
-            checkInFailed();
+            checkInFailed('location');
           }
+        }
+
+        function checkLastCheckIn() {
+          // get lastCheckIn from user
+          // if lastCheckIn < 20 hours ago
+          // then checkInSuccessful();
+          // else
+          // checkInFailed('time'); // send that it was a time error
         }
 
         function checkInSuccessful() {
           rewards.message = 'Check in successful';
-          console.log(rewards.message);
+
         }
 
-        function checkInFailed() {
+        function checkInFailed(message) {
           rewards.message = 'Check in failed';
           console.log(rewards.message);
           // return failed response & option for vendor override
@@ -62,6 +72,13 @@ angular
       auth.isLoggedIn().then(function(isLoggedIn) {
         if (!isLoggedIn) {
           $location.url('/login');
+        }
+      });
+
+      auth.getUserName().then(function(username) {
+        if (username) {
+          user = username.email;
+          console.log(user);
         }
       });
 

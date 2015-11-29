@@ -47,6 +47,14 @@ angular
             });
         },
 
+        getUserName: function() {
+          return $http
+            .get(host + '/session')
+            .then(function(res) {
+              return res.data;
+            });
+        }
+
       };
 
       return auth;
