@@ -7,15 +7,27 @@ div(ng-if="dashboard.moving")
 div(ng-if="dashboard.closed")
   h2 Closed
 
-div#map_canvas(ng-if="dashboard.open") 
-  ng-map(center="{{dashboard.coord}}")
-    marker(position="{{dashboard.coord}}")
-div(ng-if="dashboard.moving") 
+div(ng-if="dashboard.open")
+  div#truck
+    div.wheel.wheel1
+    div.wheel.wheel2
+    div.bubble
+      div.heart
+  div#map_canvas
+    ng-map(center="{{dashboard.coord}}")
+      marker(position="{{dashboard.coord}}")
+div(ng-if="dashboard.moving")
   div#truck.bounce
     div.wheel.wheel1.rotate
     div.wheel.wheel2.rotate
-div(ng-if="dashboard.closed") 
-  p Image for closed truck.
-  
+div(ng-if="dashboard.closed")
+  div#truck
+    div.wheel.wheel1
+    div.wheel.wheel2
+    div.bubble
+      div.z.z1
+      div.z.z2
+      div.z.z3
+
 div(ng-if="dashboard.isAdmin" class="navbar navbar-default")
   a(href="/#/admin") Admin

@@ -14,8 +14,9 @@ router.get('/', function(req, res, next) {
 				longitude : coord.longitude,
 				status: coord.status,
 			});
-		})
-		.catch(next);
+		},
+		next
+		)
 });
 
 module.exports = router;
