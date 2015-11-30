@@ -14,11 +14,10 @@ div(ng-if="dashboard.open")
       img(src="build/wheel.svg")
     div.wheel.wheel2
       img(src="build/wheel.svg")
-    div.bubble
-      div.heart
   div#map_canvas
     ng-map(center="{{dashboard.coord}}")
       marker(position="{{dashboard.coord}}")
+      
 div(ng-if="dashboard.moving")
   div#truck.bounce
     img(src="build/truck.svg")
@@ -26,14 +25,14 @@ div(ng-if="dashboard.moving")
       img(src="build/wheel.svg")
     div.wheel.wheel2.rotate
       img(src="build/wheel.svg")
+      
 div(ng-if="dashboard.closed")
   div#truck
+    img(src="build/truck.svg")
     div.wheel.wheel1
+      img(src="build/wheel.svg")
     div.wheel.wheel2
-    div.bubble
-      div.z.z1
-      div.z.z2
-      div.z.z3
+      img(src="build/wheel.svg")
 
-div(ng-if="dashboard.isAdmin" class="navbar navbar-default")
+div#adminBar(ng-if="dashboard.isAdmin" class="navbar navbar-default")
   a(href="/#/admin") Admin

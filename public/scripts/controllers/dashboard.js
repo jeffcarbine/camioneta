@@ -6,8 +6,12 @@ angular
     'get',
     function(get) {
       var dashboard = this;
-      dashboard.isAdmin = false; // turn to false for user app
+      dashboard.isAdmin = true; // turn to false for user app
       dashboard.truckName = 'Snowy Awesome';
+
+      jQuery('.navItem').not('.truck').removeClass('active');
+      jQuery('.navItem.truck').addClass('active');
+
       var status;
       get.location()
         .then(function(res) {

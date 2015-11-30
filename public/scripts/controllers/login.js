@@ -11,6 +11,9 @@ angular
     function (auth, users, $location) {
       var login = this;
 
+      jQuery('.navItem').not('.rewards').removeClass('active');
+      jQuery('.rewards').addClass('active');
+
       auth.isLoggedIn().then(function(isLoggedIn) {
         if (isLoggedIn) {
           $location.url('/dashboard');

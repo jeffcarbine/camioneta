@@ -8,8 +8,8 @@ html(ng-app="FoodTruckApp")
   body
     header
       nav(class="navbar navbar-default")
-        a(href="/#/") Truck
-        a(href="/#/menu") Our Menu
-        a(href="/#/rewards") Rewards
+        a.navItem.truck(href="/#/") Truck
+        a.navItem.menu(href="/#/menu") Our Menu
+        a.navItem.rewards(href="/#/rewards") Rewards
     block content
     script(src="/build/js/app.min.js")

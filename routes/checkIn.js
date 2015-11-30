@@ -5,16 +5,23 @@ var User = require('../models/userSchema');
 
 /* GET */
 router.get('/', function(req, res, next) {
-	var user = req.session.email;
+	var email = req.session.user.email;
 
 	User
-		.findOne()
+		.findOne({
+			email: email,
+		})
 		.then(function(user) {
 			res.json({
 				lastCheckIn: user.lastCheckIn,
 			});
 		})
 		.catch(next);
+});
+
+/* POST */
+router.post('/', function(req, res, next) {
+	console.log('This is where I will update the user to have one more point!');
 });
 
 module.exports = router;

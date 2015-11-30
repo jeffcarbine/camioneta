@@ -1,8 +1,19 @@
-h1 This is the rewards page.
-p {{rewards.message}}
-p {{rewards.username}}
+p {{rewards.user}}
+
+div.rewards
+  h3 You have a total of
+  h2.rewardAmount {{rewards.total}}
+  h3 {{rewards.wording}}
 
 form(ng-submit="rewards.verify()")
   button(type="submit") Check In
+p {{rewards.message}}
+div(ng-show="rewards.override")
+  a I'm here but check in failed :(
+  p Sometimes your device's GPS doesn't play nice. If you're at the truck, but check in fails, you can ask them for today's check in code.
+  form(ng-submit="rewards.override()")
+    label(for="overrideCode") Code
+    input(name="overrideCode")
+    button(type="submit") Check In!
 
 a(href="/logout") Log Out
