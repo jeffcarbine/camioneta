@@ -5,6 +5,7 @@ var User = require('../models/userSchema');
 
 /* GET */
 router.get('/', function(req, res, next) {
+	var user = req.session.email;
 
 	User
 		.findOne()

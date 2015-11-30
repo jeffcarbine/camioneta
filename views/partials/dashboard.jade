@@ -1,4 +1,4 @@
-p The truck is
+p.truckName {{dashboard.truckName}} is
 
 div(ng-if="dashboard.open")
   h2 Open
@@ -9,8 +9,11 @@ div(ng-if="dashboard.closed")
 
 div(ng-if="dashboard.open")
   div#truck
+    img(src="build/truck.svg")
     div.wheel.wheel1
+      img(src="build/wheel.svg")
     div.wheel.wheel2
+      img(src="build/wheel.svg")
     div.bubble
       div.heart
   div#map_canvas
@@ -18,8 +21,11 @@ div(ng-if="dashboard.open")
       marker(position="{{dashboard.coord}}")
 div(ng-if="dashboard.moving")
   div#truck.bounce
+    img(src="build/truck.svg")
     div.wheel.wheel1.rotate
+      img(src="build/wheel.svg")
     div.wheel.wheel2.rotate
+      img(src="build/wheel.svg")
 div(ng-if="dashboard.closed")
   div#truck
     div.wheel.wheel1

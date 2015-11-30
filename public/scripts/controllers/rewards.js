@@ -2,12 +2,14 @@ angular
   .module('RewardsController', [
     'login.auth',
     'location.get',
+    'rewards.checkIn',
   ])
   .controller('RewardsController', [
     'auth',
     '$location',
     'get',
-    function(auth, $location, get) {
+    'checkIn',
+    function(auth, $location, get, checkIn) {
       var rewards = this;
 
       var user; // setting up blank user variable for check in later
@@ -49,11 +51,18 @@ angular
         }
 
         function checkLastCheckIn() {
-          // get lastCheckIn from user
-          // if lastCheckIn < 20 hours ago
-          // then checkInSuccessful();
-          // else
-          // checkInFailed('time'); // send that it was a time error
+          var lastCheckIn;
+          checkIn.verify()
+          .then(function(res) {
+            lastCheckIn = res.data.lastCheckIn;
+          });
+          var today = new Date();
+          console.log(today + ' vs ' + lastCheckIn);
+          if(lastCheckIn === undefined) {
+            checkInSuccessful();
+          } else {
+            checkInFailed('time');
+          }
         }
 
         function checkInSuccessful() {
@@ -63,7 +72,7 @@ angular
 
         function checkInFailed(message) {
           rewards.message = 'Check in failed';
-          console.log(rewards.message);
+          console.log(message);
           // return failed response & option for vendor override
         }
 
@@ -78,6 +87,7 @@ angular
       auth.getUserName().then(function(username) {
         if (username) {
           user = username.email;
+          console.log(username.lastCheckIn);
           console.log(user);
         }
       });

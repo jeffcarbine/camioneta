@@ -40,36 +40,32 @@
 }
 
 #truck {
-  width: 400px;
-  height: 172px;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100%;
   display: block;
-  background: red;
   position: relative;
-  background: url('../truck.svg');
-  background-size: 100%;
-  background-repeat: no-repeat;
+}
+
+#truck img {
+  width: 100%;
 }
 
 .wheel {
-  width: 61px;
-  height: 61px;
+  width: 18%;
   display: block;
-  background: #000;
-  border-radius: 50%;
   position: absolute;
-  background: url('../wheel.svg');
-  background-size: 100%;
-  background-reapeat: no-repeat;
 }
 
 .wheel1 {
-  left: 73px;
-  bottom: -30px;
+  left: 17%;
+  bottom: 10%;
 }
 
 .wheel2 {
-  right: 67px;
-  bottom: -30px;
+  right: 15.4%;
+  bottom: 10%;
 }
 
 .bubble {
@@ -163,4 +159,21 @@ left: 38px;
   text-align: center;
   padding: 14px;
   text-shadow: 0px 0px 15px rgba(0,0,0,.6);
+}
+
+p.truckName {
+  text-align: center;
+  margin: 1px;
+}
+
+h2 {
+  text-transform: uppercase;
+  margin: 1px;
+  text-align: center;
+}
+
+#map_canvas {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 400px;
 }

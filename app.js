@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var session = require('./routes/session');
 var setLocation = require('./routes/setLocation');
 var getLocation = require('./routes/getLocation');
+var checkIn = require('./routes/checkIn');
 
 mongoose.connect('mongodb://localhost/camioneta');
 
@@ -39,6 +40,7 @@ app.use('/users', users);
 app.use('/session', session);
 app.use('/setLocation', setLocation);
 app.use('/getLocation', getLocation);
+app.use('/checkIn', checkIn);
 app.use('/partials', function(req, res, next) {
   res.render('partials/' + req.path);
 });
