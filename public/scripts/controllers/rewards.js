@@ -11,7 +11,7 @@ angular
     'checkIn',
     function(auth, $location, get, checkIn) {
       var rewards = this;
-      rewards.overrise = false; // hides the vendor override option until the user fails check in
+      rewards.override = false; // hides the vendor override option until the user fails check in
 
       jQuery('.navItem').not('.rewards').removeClass('active');
       jQuery('.rewards').addClass('active');
@@ -23,9 +23,11 @@ angular
       var truckStatus;
 
       rewards.verify = function() {
+        rewards.message = 'Checking in...';
         getTruckStatus();
 
         function getTruckStatus() {
+          console.log('Getting truck location...');
           get.location()
           .then(function(res) {
             truckLatitude = res.data.latitude;
@@ -41,6 +43,7 @@ angular
         }
 
         function getUserLocation() {
+          console.log('Getting your location...');
           navigator.geolocation.getCurrentPosition(function(position) {
             console.log('Getting GPS coordinates...');
             userLatitude = position.coords.latitude;
@@ -51,6 +54,7 @@ angular
         }
 
         function checkUserLocation() {
+          console.log('Verifying your location...');
           if ((userLatitude > (truckLatitude - 0.0005) && userLatitude < (truckLatitude + 0.0005)) && (userLongitude > (truckLongitude - 0.0005) && userLongitude < (truckLongitude + 0.0005))) {
             checkLastCheckIn();
           } else {
@@ -59,25 +63,58 @@ angular
         }
 
         function checkLastCheckIn() {
+          console.log('Verifying last check in...');
           var lastCheckIn;
           checkIn.verify()
           .then(function(res) {
-            lastCheckIn = new Date(res.data.lastCheckIn);
-            console.log(new Date() + ' vs ' + lastCheckIn);
-            if(lastCheckIn === undefined || lastCheckIn > new Date()) {
+            lastCheckIn = res.data.lastCheckIn;
+            if(lastCheckIn === undefined) {
+              console.log('This is first check in for user.');
               checkInSuccessful();
             } else {
-              checkInFailed('time');
+              var lastCheckInYear = new Date(lastCheckIn).getYear();
+              var year = new Date().getYear();
+              if (year === lastCheckInYear) {
+                console.log('Check in dates are in the same year');
+                var lastCheckInMonth = new Date(lastCheckIn).getMonth();
+                var month = new Date().getMonth();
+                if(month === lastCheckInMonth) {
+                  console.log('Check in dates are in the same month.');
+                  var lastCheckInDay = new Date(lastCheckIn).getDate();
+                  var today = new Date().getDate();
+                  if(today > lastCheckIn) {
+                    console.log('Last check in was more than a day ago.');
+                    checkInSuccessful();
+                  } else {
+                    console.log('Last check in was less than a day ago.');
+                    checkInFailed('time');
+                  }
+                } else if (month > lastCheckInMonth) {
+                  console.log('Last check in was last month.');
+                  checkInSuccessful();
+                } else {
+                  console.log('Last check in was next month. Are you a time traveller?');
+                  checkInFailed('time');
+                }
+              } else if (year > lastCheckInYear) {
+                console.log('Last check in was last year.');
+                checkInSuccessful();
+              } else {
+                console.log('Last check in was next year. Where is your TARDIS?');
+                checkInFailed('time');
+              }
             }
           });
         }
 
         function checkInSuccessful() {
-          rewards.message = 'Check in successful';
+          console.log('Check in successful.');
+          rewards.message = 'Cha-ching! You scored a rewards point!';
           checkIn.update();
         }
 
         function checkInFailed(message) {
+          console.log('Check in failed because of error ' + message);
           if(message == 'closed') {
             rewards.message = "You can't check in if the truck is closed.";
           } else if (message == 'location') {

@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
 		email:req.body.email,
 		password:req.body.password,
 		lastCheckIn: new Date(),
-		rewards: 1,
+		rewards: 0,
 	});
 	user.save(function(err, doc){
     if(err) {

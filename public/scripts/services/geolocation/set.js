@@ -18,7 +18,7 @@ angular
               createDate(latitude, longitude);
             });
             function createDate(latitude, longitude) {
-              var date = Date.now();
+              var date = new Date();
               setGeo(latitude, longitude, date);
             }
             function setGeo(latitude, longitude, date) {

@@ -21,7 +21,18 @@ router.get('/', function(req, res, next) {
 
 /* POST */
 router.post('/', function(req, res, next) {
-	console.log('This is where I will update the user to have one more point!');
+var email = req.session.user.email;
+
+	User
+		.findOneAndUpdate({
+			email: email,
+		},{
+			$set: {lastCheckIn: new Date()},
+			$inc: {rewards : 1}
+		})
+		.then(function(user) {
+			console.log(user);
+		});
 });
 
 module.exports = router;
