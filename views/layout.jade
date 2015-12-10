@@ -7,9 +7,13 @@ html(ng-app="FoodTruckApp")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1")
   body
     header
-      nav(class="navbar navbar-default")
-        a.navItem.truck(href="/#/") Truck
-        a.navItem.menu(href="/#/menu") Our Menu
-        a.navItem.rewards(href="/#/rewards") Rewards
+      nav.navbar.navbar-default
+        ul.nav.navbar-nav
+          li.navItem.truck.col-xs-4.active
+            a(href="/#/") Truck
+          //li.navItem.menu.col-xs-4
+            //a(href="/#/menu") Our Menu
+          li.navItem.rewards.col-xs-4
+            a(href="/#/rewards") Rewards
     block content
     script(src="/build/js/app.min.js")

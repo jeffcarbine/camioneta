@@ -39,6 +39,49 @@
   position: absolute;
 }
 
+.bounceWalk {
+  -webkit-animation-name: bounce;
+  -webkit-animation-duration: .1s;
+  -webkit-animation-timing-function: linear;
+  position: absolute;
+}
+
+@-webkit-keyframes slide {
+  0% {
+    left: 0%;
+  }
+  25% {
+    left: -2%;
+  }
+  50% {
+    left: -4%;
+  }
+  75% {
+    left:-14%;
+  }
+}
+
+.slide {
+  -webkit-animation-name: slide;
+  -webkit-animation-duration: .9s;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes walk {
+  0% {
+    left: 40%;
+  }
+  100% {
+    left: 35%;
+  }
+}
+
+.walk {
+  -webkit-animation-name: walk;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+}
+
 #truck {
   width: 80%;
   max-width: 400px;
@@ -52,10 +95,30 @@
   width: 100%;
 }
 
+#truck img.truck {
+  z-index: 1;
+  position: relative;
+}
+
+#truck img.window {
+  position: absolute;
+  left: -14%;
+  z-index: 1;
+}
+
+.person {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  z-index: 0;
+  width: 13%;
+}
+
 .wheel {
   width: 18%;
   display: block;
   position: absolute;
+  z-index: 1;
 }
 
 .wheel1 {
@@ -68,25 +131,28 @@
   bottom: 10%;
 }
 
+/* BODY */
+
+body {
+    max-width: 700px;
+    margin: 0 auto;
+    width: 100%;
+}
+
 /* NAVIGATION */
 
-.navbar {
-  min-height: 0;
-  background: #333366;
+.nav {
+  width: 100%;
+  margin: 0;
 }
 
-.navbar a {
-  width: 33.33%;
-  float: left;
+.nav li {
   text-align: center;
-  padding: 5px;
-  transition: all, .2s, ease;
-  color: #EEE;
-  text-decoration: none;
+  padding: 0;
 }
 
-.navbar a.active {
-  background: rgba(255,255,255,.2);
+.navbar {
+    min-height: 30px;
 }
 
 div#adminBar {
@@ -105,7 +171,8 @@ p.truckName {
   margin: 1px;
 }
 
-h2 {
+h1 {
+  font-size: 3em;
   text-transform: uppercase;
   margin: 1px;
   text-align: center;
@@ -135,4 +202,30 @@ h3 {
   width: 80%;
   margin: 0 auto;
   max-width: 400px;
+}
+
+.btn-spacer .btn {
+  margin-bottom: 10px;
+}
+
+.logOut {
+    margin: 3px auto 0;
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 12px;
+}
+
+.redeem {
+  margin-top: 10px;
+}
+
+.redeem .glyphicon::before {
+  position: absolute;
+  left: -18px;
+  top: 1px;
+}
+
+.checkin .glyphicon {
+  margin-left: 15px;
 }

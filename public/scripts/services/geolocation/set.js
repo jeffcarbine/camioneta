@@ -7,7 +7,7 @@ angular
     '$http',
     function(host, $http) {
       var set = {
-        open: function() {
+        open: function(cb) {
           var latitude;
           var longitude;
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -28,10 +28,14 @@ angular
                   longitude: longitude,
                   date: date,
                   status: 0, // 0 = open
-                });
+                })
+                .then(function(res) {
+                  cb(null, res);
+                })
+                .catch(cb);
             }
         },
-        close: function() {
+        close: function(cb) {
           var latitude;
           var longitude;
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -52,10 +56,14 @@ angular
                   longitude: longitude,
                   date: date,
                   status: 2, // 2 = closed
-                });
+                })
+                .then(function(res) {
+                  cb(null, res);
+                })
+                .catch(cb);
             }
         },
-        move: function() {
+        move: function(cb) {
           var latitude;
           var longitude;
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -76,7 +84,11 @@ angular
                   longitude: longitude,
                   date: date,
                   status: 1, // 1 = moving
-                });
+                })
+                .then(function(res) {
+                  cb(null, res);
+                })
+                .catch(cb);
             }
         },
       };

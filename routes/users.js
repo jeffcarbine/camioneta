@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
 	var user = new User({
 		email:req.body.email,
 		password:req.body.password,
-		lastCheckIn: new Date(),
+		lastCheckIn: null,
 		rewards: 0,
 	});
 	user.save(function(err, doc){

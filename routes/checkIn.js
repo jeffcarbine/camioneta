@@ -29,9 +29,13 @@ var email = req.session.user.email;
 		},{
 			$set: {lastCheckIn: new Date()},
 			$inc: {rewards : 1}
+		},{
+			new: true
 		})
 		.then(function(user) {
-			console.log(user);
+			res.json({
+				rewards: user.rewards,
+			});
 		});
 });
 

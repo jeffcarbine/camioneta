@@ -1,8 +1,46 @@
-h1= title
-p {{admin.message}}
+div.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
+  h4 Hey Snowy Awesome!
+  p Your truck is currently 
+    strong {{admin.message}}
+  hr
+  div(ng-show="admin.isOpen")
+    div#truck
+      img.truck(src="build/truck-open.svg")
+      img.window.slide(src="build/window.svg")
+      div.person.walk.bounceWalk
+        img(src="build/person.svg")
+      div.wheel.wheel1  
+        img(src="build/wheel.svg")
+      div.wheel.wheel2
+        img(src="build/wheel.svg")
+        
+  div(ng-show="admin.isMoving")
+    div#truck.bounce
+      img(src="build/truck.svg")
+      div.wheel.wheel1.rotate
+        img(src="build/wheel.svg")
+      div.wheel.wheel2.rotate
+        img(src="build/wheel.svg")
+        
+  div(ng-show="admin.isClosed")
+    div#truck
+      img(src="build/truck.svg")
+      div.wheel.wheel1
+        img(src="build/wheel.svg")
+      div.wheel.wheel2
+        img(src="build/wheel.svg")
 
-form(ng-submit="admin.set()")
-  button(type="submit") Open/Close
+  p What do you want to do?
 
-form(ng-submit="admin.move()")
-  button(type="submit") Let's get moving!
+div.well.col-sm-4.col-sm-offset-4.col-xs-8.col-xs-offset-2
+  form(ng-submit="admin.open()" ng-show="admin.isClosed || admin.isMoving")
+    div.btn-spacer
+      button.btn.btn-primary.col-xs-12(type="submit") Open my truck!
+
+  form(ng-submit="admin.move()" ng-hide="admin.isMoving")
+    div.btn-spacer
+      button.btn.btn-success.col-xs-12(type="submit") Let's get moving!
+      
+  form(ng-submit="admin.close()" ng-show="admin.isOpen || admin.isMoving")
+    div.btn-spacer
+      button.btn.btn-warning.col-xs-12(type="submit") Close for the day!

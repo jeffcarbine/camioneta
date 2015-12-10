@@ -1,9 +1,9 @@
-div(class="alert alert-danger" ng-show="login.successMessage")
-  p {{ login.successMessage }}
-
 div(class="row")
-  div(class="col-sm-4 col-sm-offset-4")
-    h1 Login
+  div(class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2")
+    p To acces rewards, you need to
+    h1 Log In
+    hr
+  div(class="well col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2")
     form(ng-submit="login.submit(login.inputs.email, login.inputs.password)")
       div(class="form-group")
         label(for="email") Email
@@ -14,7 +14,7 @@ div(class="row")
           ng-model="login.inputs.email"
         )
       div(class="form-group")
-        label(for="password") Password
+        label(for="password") PIN
         div(class="input-group")
           input(
             class="form-control"
@@ -27,6 +27,7 @@ div(class="row")
 
       div(class="alert alert-danger" ng-show="login.errorMessage")
         p {{ login.errorMessage }}
-      div(class="form-group")
-        button(type="submit" ng-click="login.inputType = 'signin'" class="btn btn-primary") Login
-        button(type="submit" ng-click="login.inputType = 'signup'" class="btn btn-info") Signup
+      div.btn-spacer
+        button(type="submit" ng-click="login.inputType = 'signin'" class="btn btn-primary col-xs-12") Login
+      div.btn-spacer  
+        button(type="submit" ng-click="login.inputType = 'signup'" class="btn btn-info col-xs-12") Signup

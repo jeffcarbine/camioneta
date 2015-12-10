@@ -1,19 +1,27 @@
-p {{rewards.user}}
+div.panel.panel-info.col-xs-8.col-xs-offset-2
+  div.panel-body
+    h3.panel-title {{rewards.user}}
+    a.logOut(href="/logout")
+      span.glyphicon.glyphicon-log-out
 
-div.rewards
-  h3 You have a total of
-  h2.rewardAmount {{rewards.total}}
+div.well.well-lg.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
+  h1.rewardAmount
+    {{rewards.total}}
   h3 {{rewards.wording}}
+  button.redeem.btn.btn-success.col-xs-6.col-xs-offset-3
+    span.glyphicon.glyphicon-star Redeem
 
-form(ng-submit="rewards.verify()")
-  button(type="submit") Check In
-p {{rewards.message}}
-div(ng-show="rewards.override")
-  a I'm here but check in failed :(
-  p Sometimes your device's GPS doesn't play nice. If you're at the truck, but check in fails, you can ask them for today's check in code.
-  form(ng-submit="rewards.override()")
-    label(for="overrideCode") Code
-    input(name="overrideCode")
-    button(type="submit") Check In!
+form(ng-submit="rewards.verify()" ng-hide="rewards.message")
+  button.checkin.btn.btn-lg.btn-primary.col-sm-6.col-sm-offset-3.col-xs-8.col-xs-offset-2(type="submit") Check In
+    span.glyphicon.glyphicon-check
+  
+div.alert.alert-warning.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1(ng-show="rewards.message") {{rewards.message}}
 
-a(href="/logout") Log Out
+div.alert.alert-warning.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1(ng-show="rewards.override")
+  h3 But I'm here! :(
+  p Sorry about that! Sometimes your GPS doesn't play nice with our app.
+  p Just ask us at the truck for today's check-in code and enter it below to get your rewards point!
+    div.col-xs-10.col-xs-offset-1
+      input.form-control(name="overrideCode")
+    button.btn.btn-primary.col-xs-10.col-xs-offset-1(type="submit") Check In (Again)!
+    

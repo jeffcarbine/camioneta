@@ -25,6 +25,11 @@ angular
         controller: 'RewardsController',
         controllerAs: 'rewards',
       })
+      .when('/menu', {
+        teamplateUrl: '/partials/menu',
+        controller: 'MenuController',
+        controllerAs: 'menu',
+      })
       .when('/admin', {
         templateUrl: './partials/admin',
         controller: 'AdminController',

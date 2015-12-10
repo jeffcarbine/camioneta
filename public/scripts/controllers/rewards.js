@@ -9,7 +9,8 @@ angular
     '$location',
     'get',
     'checkIn',
-    function(auth, $location, get, checkIn) {
+    '$q',
+    function(auth, $location, get, checkIn, $q) {
       var rewards = this;
       rewards.override = false; // hides the vendor override option until the user fails check in
 
@@ -37,7 +38,7 @@ angular
             if(truckStatus === 0) {
               getUserLocation();
             } else {
-              checkInFailed('closed');
+              checkInFailed(1);
             }
           });
         }
@@ -49,7 +50,7 @@ angular
             userLatitude = position.coords.latitude;
             userLongitude = position.coords.longitude;
             console.log('User is at ' + userLatitude + ', ' + userLongitude);
-            checkUserLocation();
+            $q.resolve().then(checkUserLocation);
           });
         }
 
@@ -58,7 +59,8 @@ angular
           if ((userLatitude > (truckLatitude - 0.0005) && userLatitude < (truckLatitude + 0.0005)) && (userLongitude > (truckLongitude - 0.0005) && userLongitude < (truckLongitude + 0.0005))) {
             checkLastCheckIn();
           } else {
-            checkInFailed('location');
+            checkInFailed(2);
+            console.log('Fails here!');
           }
         }
 
@@ -69,39 +71,14 @@ angular
           .then(function(res) {
             lastCheckIn = res.data.lastCheckIn;
             if(lastCheckIn === undefined) {
-              console.log('This is first check in for user.');
               checkInSuccessful();
             } else {
-              var lastCheckInYear = new Date(lastCheckIn).getYear();
-              var year = new Date().getYear();
-              if (year === lastCheckInYear) {
-                console.log('Check in dates are in the same year');
-                var lastCheckInMonth = new Date(lastCheckIn).getMonth();
-                var month = new Date().getMonth();
-                if(month === lastCheckInMonth) {
-                  console.log('Check in dates are in the same month.');
-                  var lastCheckInDay = new Date(lastCheckIn).getDate();
-                  var today = new Date().getDate();
-                  if(today > lastCheckIn) {
-                    console.log('Last check in was more than a day ago.');
-                    checkInSuccessful();
-                  } else {
-                    console.log('Last check in was less than a day ago.');
-                    checkInFailed('time');
-                  }
-                } else if (month > lastCheckInMonth) {
-                  console.log('Last check in was last month.');
-                  checkInSuccessful();
-                } else {
-                  console.log('Last check in was next month. Are you a time traveller?');
-                  checkInFailed('time');
-                }
-              } else if (year > lastCheckInYear) {
-                console.log('Last check in was last year.');
+              var lastCheckInDate = (new Date(lastCheckIn).getYear() + new Date(lastCheckIn).getMonth() + new Date(lastCheckIn).getDay());
+              var today = (new Date().getYear() + new Date().getMonth() + new Date().getDay());
+              if (today > lastCheckInDate) {
                 checkInSuccessful();
               } else {
-                console.log('Last check in was next year. Where is your TARDIS?');
-                checkInFailed('time');
+                checkInFailed(3);
               }
             }
           });
@@ -110,22 +87,37 @@ angular
         function checkInSuccessful() {
           console.log('Check in successful.');
           rewards.message = 'Cha-ching! You scored a rewards point!';
-          checkIn.update();
+          checkIn.update()
+          .then(function(res) {
+            rewards.total = res.data.rewards;
+          });
         }
 
-        function checkInFailed(message) {
-          console.log('Check in failed because of error ' + message);
-          if(message == 'closed') {
-            rewards.message = "You can't check in if the truck is closed.";
-          } else if (message == 'location') {
-            rewards.message = "You can only check in when you're at the truck.";
-            rewards.override = true;
-          } else if (message == 'time') {
-            rewards.message = "You can only check in one time per day.";
-          } else {
-            rewards.message = 'The check in process failed. Please try again.';
-            rewards.override = true;
+        function checkInFailed(m) {
+          var theMessage;
+          var override = false;
+
+          switch(m) {
+            case 1:
+              theMessage = 'Sorry, you can only check in when the truck is open!';
+              break;
+            case 2:
+              theMessage = 'Sorry, you can only check in when you are at the truck.';
+              //override = true;
+              break;
+            case 3:
+              theMessage = 'Sorry, you can only check in one time per day!';
+              break;
+            default:
+              theMessage = 'The check in process failed. Please try again.';
+              //override = true;
+              break;
           }
+
+          rewards.message = theMessage;
+          rewards.override = override;
+          console.log(theMessage);
+          console.log(override);
         }
 
       };
@@ -141,9 +133,9 @@ angular
           rewards.user = user.email;
           rewards.total = user.rewards;
           if(user.rewards === 1) {
-            rewards.wording = 'reward!';
+            rewards.wording = 'reward';
           } else {
-            rewards.wording = 'rewards!';
+            rewards.wording = 'rewards';
           }
         }
       });

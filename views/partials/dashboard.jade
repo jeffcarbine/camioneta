@@ -1,16 +1,19 @@
 p.truckName {{dashboard.truckName}} is
 
 div(ng-if="dashboard.open")
-  h2 Open
+  h1.bg-success Open!
 div(ng-if="dashboard.moving")
-  h2 Moving
+  h1.bg-warning Moving
 div(ng-if="dashboard.closed")
-  h2 Closed
+  h1.bg-danger Closed :(
 
 div(ng-if="dashboard.open")
   div#truck
-    img(src="build/truck.svg")
-    div.wheel.wheel1
+    img.truck(src="build/truck-open.svg")
+    img.window.slide(src="build/window.svg")
+    div.person.walk.bounceWalk
+      img(src="build/person.svg")
+    div.wheel.wheel1  
       img(src="build/wheel.svg")
     div.wheel.wheel2
       img(src="build/wheel.svg")
@@ -33,6 +36,3 @@ div(ng-if="dashboard.closed")
       img(src="build/wheel.svg")
     div.wheel.wheel2
       img(src="build/wheel.svg")
-
-div#adminBar(ng-if="dashboard.isAdmin" class="navbar navbar-default")
-  a(href="/#/admin") Admin
