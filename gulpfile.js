@@ -84,7 +84,7 @@ gulp.task('server', function() {
   nodemon({
     script: './bin/www',
     ext: 'js'
-  })
+  });
 });
 
 gulp.task('livereload', function() {
